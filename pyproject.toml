@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-reliability"
+version = "0.1.0"
+description = "Predicting when LLMs get it wrong: can simple response features flag unreliable answers?"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Osewuike Igue" }]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.9",
+    "pyyaml>=6.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.70"]
+openai = ["openai>=1.0"]
+notebook = ["jupyter", "ipykernel"]
+dev = ["pytest>=7", "ruff>=0.4", "nbformat>=5", "nbclient>=0.7", "ipykernel>=6"]
+all = ["llm-reliability[anthropic,openai,notebook,dev]"]
+
+[project.scripts]
+llmrel = "llm_reliability.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["slow: end-to-end tests that take more than a few seconds"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B905"]

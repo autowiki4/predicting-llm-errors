@@ -1,0 +1,83 @@
+{
+  "summary": {
+    "n_questions": 1000,
+    "n_wrong": 255,
+    "error_rate": 0.255,
+    "n_train": 750,
+    "n_test": 250,
+    "n_test_wrong": 64,
+    "cv_folds": 5,
+    "seed": 42
+  },
+  "hypotheses": {
+    "best_models": {
+      "simple": "simple:logistic_regression",
+      "combined": "combined:logistic_regression",
+      "rule": "rule:agreement_rate"
+    },
+    "combined_better_than_chance": {
+      "auc": 0.9585853494623656,
+      "null_mean": 0.49819917674731184,
+      "p_value": 0.000999000999000999
+    },
+    "simple_better_than_chance": {
+      "auc": 0.7711693548387096,
+      "null_mean": 0.49824042338709673,
+      "p_value": 0.000999000999000999
+    },
+    "combined_vs_simple": {
+      "auc_difference": 0.187415994623656,
+      "ci_low": 0.12148721140168507,
+      "ci_high": 0.25262163597496406,
+      "p_value": 0.001998001998001998
+    },
+    "combined_vs_best_rule": {
+      "auc_difference": 0.03498823924731187,
+      "ci_low": 0.0047376334179612956,
+      "ci_high": 0.06954691624670854,
+      "p_value": 0.015984015984015984
+    }
+  },
+  "feature_sets": {
+    "simple": [
+      "n_chars",
+      "n_words",
+      "n_sentences",
+      "n_lines",
+      "n_numbers",
+      "n_output_tokens",
+      "hedge_count",
+      "hedge_rate",
+      "confident_count",
+      "confident_rate",
+      "self_correction_count",
+      "answer_explicit",
+      "answer_missing",
+      "answer_is_integer",
+      "answer_log_magnitude"
+    ],
+    "combined": [
+      "n_chars",
+      "n_words",
+      "n_sentences",
+      "n_lines",
+      "n_numbers",
+      "n_output_tokens",
+      "hedge_count",
+      "hedge_rate",
+      "confident_count",
+      "confident_rate",
+      "self_correction_count",
+      "answer_explicit",
+      "answer_missing",
+      "answer_is_integer",
+      "answer_log_magnitude",
+      "agreement_rate",
+      "n_unique_answers",
+      "answer_entropy",
+      "majority_agrees",
+      "selfcheck_says_incorrect",
+      "selfcheck_confidence"
+    ]
+  }
+}

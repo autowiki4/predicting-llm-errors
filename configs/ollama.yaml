@@ -1,0 +1,38 @@
+# Real experiment with a FREE local model via Ollama (https://ollama.com).
+#   ollama pull llama3.2:3b
+#   ollama serve            (usually already running)
+#   llmrel run --config configs/ollama.yaml
+#
+# Small local models make more mistakes on GSM8K, which gives the classifiers
+# plenty of wrong answers to learn from. Any OpenAI-compatible server works:
+# change base_url / model (LM Studio: http://localhost:1234/v1).
+run_name: ollama-llama3.2-3b
+output_dir: runs
+
+data:
+  path: data/raw/gsm8k_test.jsonl
+  n_questions: 1000
+  seed: 0
+
+llm:
+  provider: openai_compatible
+  model: llama3.2:3b
+  base_url: http://localhost:11434/v1
+  api_key_env: OPENAI_API_KEY   # ignored by Ollama
+  max_tokens: 1024
+  answer_temperature: 0.0       # main answer: greedy
+  sample_temperature: 0.8       # extra samples: varied, for consistency features
+
+collection:
+  n_samples: 5
+  self_check: true
+  workers: 2
+
+eval:
+  test_size: 0.25
+  cv_folds: 5
+  seed: 42
+  models: [logistic_regression, random_forest, gradient_boosting]
+  n_bootstrap: 1000
+  n_permutations: 1000
+  ablation_model: logistic_regression

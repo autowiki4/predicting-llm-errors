@@ -1,0 +1,47 @@
+{
+  "config": {
+    "run_name": "demo",
+    "output_dir": "runs",
+    "data": {
+      "path": "data/raw/gsm8k_test.jsonl",
+      "n_questions": 1000,
+      "seed": 0
+    },
+    "llm": {
+      "provider": "simulated",
+      "model": "simulated-llm",
+      "max_tokens": 16000,
+      "effort": "medium",
+      "fallbacks": "auto",
+      "base_url": null,
+      "api_key_env": "OPENAI_API_KEY",
+      "answer_temperature": 0.0,
+      "sample_temperature": 0.8,
+      "simulated_difficulty_shift": 0.0,
+      "max_retries": 5,
+      "timeout_seconds": 600.0
+    },
+    "collection": {
+      "n_samples": 5,
+      "self_check": true,
+      "workers": 8
+    },
+    "eval": {
+      "test_size": 0.25,
+      "cv_folds": 5,
+      "seed": 42,
+      "models": [
+        "logistic_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "n_bootstrap": 1000,
+      "n_permutations": 1000,
+      "ablation_model": "logistic_regression"
+    }
+  },
+  "prompts": {
+    "answer": "Solve the following math word problem. Show your reasoning step by step.\nOn the last line, write the final answer as a single number in the form:\nAnswer: <number>\n\nProblem: {question}",
+    "self_check": "You are checking someone's solution to a math word problem.\n\nProblem: {question}\n\nProposed solution:\n{solution}\n\nIs the proposed final answer correct? Reply with exactly two lines:\nVerdict: CORRECT or INCORRECT\nConfidence: <an integer from 0 to 100 for how confident you are that the final answer is correct>"
+  }
+}

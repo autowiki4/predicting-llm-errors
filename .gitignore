@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Run outputs: keep the small demo example, ignore everything else
+runs/*
+!runs/demo/
+runs/demo/responses.jsonl
+
+# Extra datasets you download (the test split is bundled)
+data/raw/gsm8k_train.jsonl

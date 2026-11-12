@@ -1,0 +1,13 @@
+setting,groups,n_features,roc_auc_mean,roc_auc_std,f1_wrong_mean
+all features,length+confidence_language+answer_format+consistency+self_check,21,0.9713499575341681,0.007755131241457965,0.8338384854071128
+simple (free) features,length+confidence_language+answer_format,15,0.7678748695196063,0.04681769116932399,0.5374609015629366
+only length,length,6,0.7709813667050509,0.04044985155541561,0.5457955943685426
+only confidence_language,confidence_language,5,0.633131919151656,0.07010353824575455,0.4035864885651394
+only answer_format,answer_format,4,0.5422659320685635,0.04946335353217236,0.3495207713599747
+only consistency,consistency,4,0.9575693120101014,0.013933893432362204,0.786290729279235
+only self_check,self_check,2,0.7931850046981627,0.02543192706042134,0.5541249226963513
+all minus length,confidence_language+answer_format+consistency+self_check,15,0.9675179698206013,0.008715297414358414,0.822780744799708
+all minus confidence_language,length+answer_format+consistency+self_check,16,0.9707709914946758,0.006519348721906785,0.8466149482516814
+all minus answer_format,length+confidence_language+consistency+self_check,17,0.9717251049487892,0.007418428259318624,0.8331731014083955
+all minus consistency,length+confidence_language+answer_format+self_check,17,0.8254565945355419,0.030044172922705597,0.5994118158133711
+all minus self_check,length+confidence_language+answer_format+consistency,19,0.9660978937294727,0.011556303485416948,0.8158486378102007
