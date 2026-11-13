@@ -193,6 +193,10 @@ def build_feature_table(records: list[dict[str, Any]]) -> pd.DataFrame:
             "(and check that it succeeded)"
         )
     df = pd.DataFrame([record_features(r) for r in records])
+    # Responses are saved in the order the (parallel) collection finished them, which
+    # changes from run to run. Sort by question id so the same responses always give
+    # the same table, and therefore the same train/test split and results.
+    df = df.sort_values("id", kind="stable", ignore_index=True)
     ordered = ["id"] + [f for g in FEATURE_GROUPS.values() for f in g]
     meta = ["predicted_answer", "gold_answer", "n_steps", "is_wrong"]
     return df[ordered + meta]
